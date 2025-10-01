@@ -1,0 +1,18 @@
+CLIENTE RIMAC
+	us-east-1_ezXA2Iu6e
+	ClientId: 5vatab097p6e7kdmia3u3a86jv
+	IdentityPool: us-east-1:851009eb-ed54-45b5-821a-317de8304e78
+	Cuenta AWS: 211125470023
+ 
+CLIENTE ESTARBIEN
+	us-east-1_dBTyBzddW
+	ClientId: 791cn6hbmhorsp3pepbfdoe7qk
+	IdentityPool: us-east-1:31e4f0a0-2e2c-47e9-8d20-8774ba50a770
+	Cuenta AWS: 799683146289
+ 
+POOL CENTRALIZADO
+	us-east-2_CpAkinT1i
+	ClientId: 6bttup877q2dstrvu77r8v469q
+	Cuenta AWS: 211125470023
+
+llp7m5ojfb1hpv59o0vq7lis17hce8hijn2gd9jds1q4jj7173a
