@@ -1,0 +1,14 @@
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_COGNITO_USER_POOL_ID: string;
+  readonly VITE_COGNITO_HOSTED_CLIENT_ID: string;
+  readonly VITE_COGNITO_DOMAIN: string; // mydomain.auth.us-east-1.amazoncognito.com
+  readonly VITE_COGNITO_REDIRECT_SIGNIN: string;
+  readonly VITE_COGNITO_REDIRECT_SIGNOUT: string;
+  readonly VITE_COGNITO_SCOPES?: string; // espacio separado
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

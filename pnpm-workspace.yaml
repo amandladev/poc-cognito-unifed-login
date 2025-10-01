@@ -1,0 +1,5 @@
+packages:
+  - POC3
+  - POC2
+  - .
+  - POC_CDK_COGNITO

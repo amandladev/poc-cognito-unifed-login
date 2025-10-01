@@ -1,0 +1,22 @@
+{
+  "name": "poc-cdk-cognito",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy --all",
+    "destroy": "cdk destroy --all"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.154.0",
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.14.9"
+  },
+  "dependencies": {
+    "constructs": "^10.3.0",
+    "aws-cdk-lib": "^2.154.0"
+  }
+}

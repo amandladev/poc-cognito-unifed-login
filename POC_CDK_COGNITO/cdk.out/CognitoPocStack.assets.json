@@ -1,0 +1,20 @@
+{
+  "version": "48.0.0",
+  "files": {
+    "86a7011442bdeb60d453a52e3cde79b411980a80845e77d95f6c0864d224c0b9": {
+      "displayName": "CognitoPocStack Template",
+      "source": {
+        "path": "CognitoPocStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region-40f0b57e": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "86a7011442bdeb60d453a52e3cde79b411980a80845e77d95f6c0864d224c0b9.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
