@@ -1,6 +1,6 @@
 // Firebase Configuration
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, browserLocalPersistence, setPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbcuAgPHYbgU0jdvG1JS9BrCa3s6T6B5E",
@@ -16,6 +16,11 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication
 export const auth = getAuth(app);
+
+// Enable persistence (mantener sesión después de recargar)
+setPersistence(auth, browserLocalPersistence).catch((error) => {
+  console.error('Error setting Firebase persistence:', error);
+});
 
 // Configure Google Auth Provider
 export const googleProvider = new GoogleAuthProvider();

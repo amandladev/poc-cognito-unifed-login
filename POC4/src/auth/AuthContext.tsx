@@ -28,37 +28,67 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Configure Cognito
     configureCognito();
 
-    // Listen to Firebase auth state
+    const initAuth = async () => {
+      try {
+        // 1. Check for Firebase redirect result first (when returning from OAuth)
+        const firebaseUser = await hybridAuth.checkRedirectResult();
+        if (firebaseUser) {
+          console.log('✅ Firebase user from redirect:', firebaseUser);
+          setUser(firebaseUser);
+          setMode('firebase-cognito-oidc');
+          setLoading(false);
+          return; // Don't check Cognito if Firebase user exists
+        }
+
+        // 2. Check for Cognito user only if no Firebase user
+        const cognitoData = await hybridAuth.getCognitoUser();
+        if (cognitoData) {
+          console.log('✅ Cognito user found:', cognitoData);
+          setCognitoUser(cognitoData);
+          setMode('cognito-direct');
+          setLoading(false);
+          return;
+        }
+
+        // 3. No user found from either source
+        setLoading(false);
+      } catch (err: any) {
+        console.error('Error initializing auth:', err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    // Listen to Firebase auth state changes
     const unsubscribe = hybridAuth.onFirebaseAuthStateChange((firebaseUser) => {
+      console.log('🔄 Firebase auth state changed:', firebaseUser);
+      
+      if (firebaseUser) {
+        console.log('✅ Firebase user detected in auth state listener');
+        console.log('Email:', firebaseUser.email);
+        console.log('UID:', firebaseUser.uid);
+        console.log('Provider Data:', firebaseUser.providerData);
+      }
+      
       setUser(firebaseUser);
-      setLoading(false);
+      if (firebaseUser) {
+        setMode('firebase-cognito-oidc');
+      }
     });
 
-    // Check for Cognito user on mount
-    checkCognitoUser();
+    initAuth();
 
     return () => unsubscribe();
   }, []);
-
-  const checkCognitoUser = async () => {
-    const cognitoData = await hybridAuth.getCognitoUser();
-    if (cognitoData) {
-      setCognitoUser(cognitoData);
-      setMode('via-cognito');
-    }
-    setLoading(false);
-  };
 
   const loginWithFirebase = async () => {
     try {
       setLoading(true);
       setError(null);
-      const firebaseUser = await hybridAuth.signInWithFirebase();
-      setUser(firebaseUser);
-      setMode('firebase-direct');
+      await hybridAuth.signInWithFirebase();
+      // La función redireccionará, la app se recargará después
     } catch (err: any) {
       setError(err.message);
-    } finally {
       setLoading(false);
     }
   };
