@@ -46,6 +46,7 @@ export const HostedAuthProvider: React.FC<{children: React.ReactNode}> = ({ chil
       try {
         const cognitoUser = await getCurrentUser();
         const session = await fetchAuthSession();
+        console.log('SESSION', session)
         const idToken = session.tokens?.idToken?.toString();
         const accessToken = session.tokens?.accessToken?.toString();
         let aud: string | undefined;

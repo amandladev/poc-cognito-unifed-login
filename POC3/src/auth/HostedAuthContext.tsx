@@ -46,6 +46,8 @@ export const HostedAuthProvider: React.FC<{children: React.ReactNode}> = ({ chil
             aud = payload.aud; exp = payload.exp;
           }
         } catch {}
+        console.log('Cognito User:', cognitoUser);
+        console.log('Session:', session);
         setUser({
           username: cognitoUser.username,
           userId: cognitoUser.userId,

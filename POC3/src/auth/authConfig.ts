@@ -23,7 +23,7 @@ export function configureHostedUI(cfg: HostedUIConfigEnv) {
             scopes: cfg.scopes,
             redirectSignIn: cfg.redirectSignIn,
             redirectSignOut: cfg.redirectSignOut,
-            responseType: 'code'
+            responseType: 'code',
           }
         }
       }
